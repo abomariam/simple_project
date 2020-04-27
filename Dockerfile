@@ -1,13 +1,12 @@
 FROM python:3.8
 
 # Install curl, node, yarn, &GDAL
-#RUN apt-get -y install curl \
-#  && curl -sL https://deb.nodesource.com/setup_12.x | bash \
-#  && apt-get install -y nodejs \
-#  && curl -o- -L https://yarnpkg.com/install.sh | bash \
-#  && apt-get install -y binutils libproj-dev gdal-bin
+RUN apt-get -y install curl \
+  && curl -sL https://deb.nodesource.com/setup_12.x | bash \
+  && apt-get install -y nodejs \
+  && curl -o- -L https://yarnpkg.com/install.sh | bash \
+  && apt-get install -y binutils libproj-dev gdal-bin
 
-RUN apt-get update && apt-get install -y binutils libproj-dev gdal-bin
 
 WORKDIR /app/backend
 
@@ -16,27 +15,27 @@ COPY ./backend/requirements.txt /app/backend/
 RUN pip3 install --upgrade pip -r requirements.txt
 
 # Install JS dependencies
-#WORKDIR /app/frontend
+WORKDIR /app/frontend
 
-#COPY ./frontend/package.json ./frontend/yarn.lock /app/frontend/
-#RUN $HOME/.yarn/bin/yarn install
+COPY ./frontend/package.json ./frontend/yarn.lock /app/frontend/
+RUN $HOME/.yarn/bin/yarn install
 
 # Add the rest of the code
-#COPY . /app/
+COPY . /app/
 
 # Build static files
-#RUN $HOME/.yarn/bin/yarn build
+RUN $HOME/.yarn/bin/yarn build
 
 # Have to move all static files other than index.html to root/
 # for whitenoise middleware
-#WORKDIR /app/frontend/build
+WORKDIR /app/frontend/build
 
-#RUN mkdir root && mv *.ico *.js *.json root
+RUN mkdir root && mv *.ico *.js *.json root
 
 # Collect static files
 RUN mkdir /app/backend/staticfiles
 
-#WORKDIR /app
+WORKDIR /app/backend
 
 RUN python3 manage.py collectstatic --noinput
 
