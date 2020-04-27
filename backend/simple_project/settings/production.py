@@ -1,9 +1,8 @@
-import os
 from .base import *
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'h5*$vdw$yof$mvmm=#=v2k-79f66zp-rxyh^@p9%6md9j!ti+t'
 DEBUG = False
-ALLOWED_HOSTS = [os.environ.get("PRODUCTION_HOST")]
+ALLOWED_HOSTS = ['nameless-scrubland-48417.herokuapp.com']
 
 import django_heroku
 django_heroku.settings(locals())
