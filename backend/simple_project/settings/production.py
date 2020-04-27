@@ -9,3 +9,4 @@ django_heroku.settings(locals())
 
 TEMPLATES[0]["DIRS"] = [os.path.join(BASE_DIR, "../", "frontend", "build")]
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "../", "frontend", "build", "static")]
+WHITENOISE_ROOT = os.path.join(BASE_DIR, "../", "frontend", "build", "root")

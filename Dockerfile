@@ -36,7 +36,7 @@ RUN mkdir /app/backend/staticfiles
 
 WORKDIR /app
 
-RUN python3 backend/manage.py collectstatic --noinput
+RUN python3 backend/manage.py collectstatic --noinput --settings=simple_project.settings.production
 
 EXPOSE $PORT
 
