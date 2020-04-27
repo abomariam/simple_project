@@ -7,7 +7,7 @@ FROM python:3.8
 #  && curl -o- -L https://yarnpkg.com/install.sh | bash \
 #  && apt-get install -y binutils libproj-dev gdal-bin
 
-RUN apt-get install -y binutils libproj-dev gdal-bin
+RUN apt-get update && apt-get install -y binutils libproj-dev gdal-bin
 
 WORKDIR /app/backend
 
@@ -38,8 +38,8 @@ RUN mkdir /app/backend/staticfiles
 
 #WORKDIR /app
 
-RUN python3 backend/manage.py collectstatic --noinput
+RUN python3 manage.py collectstatic --noinput
 
 EXPOSE $PORT
 
-CMD gunicorn backend.simple_project.wsgi:application -b 0.0.0.0:$PORT
+CMD gunicorn simple_project.wsgi:application -b 0.0.0.0:$PORT
