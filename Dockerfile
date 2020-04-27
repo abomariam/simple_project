@@ -2,7 +2,7 @@ FROM python:3.8
 
 # Install curl, node, yarn, &GDAL
 RUN apt-get -y install curl \
-  && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+  && curl -sL https://deb.nodesource.com/setup_12.x | bash \
   && apt-get install -y nodejs \
   && curl -o- -L https://yarnpkg.com/install.sh | bash \
   && apt-get install -y binutils libproj-dev gdal-bin
