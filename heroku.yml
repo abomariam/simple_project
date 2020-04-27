@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: python3 backend/manage.py runserver 0.0.0.0:$PORT
+  web: gunicorn backend.simple_project.wsgi:application -b 0.0.0.0:$PORT

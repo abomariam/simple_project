@@ -36,8 +36,8 @@ RUN mkdir /app/backend/staticfiles
 
 WORKDIR /app
 
-RUN python3 backend/manage.py collectstatic --noinput --settings=simple_project.settings.production
+RUN python3 backend/manage.py collectstatic --noinput
 
 EXPOSE $PORT
 
-CMD python3 backend/manage.py runserver 0.0.0.0:$PORT
+CMD gunicorn backend.simple_project.wsgi:application -b 0.0.0.0:$PORT
