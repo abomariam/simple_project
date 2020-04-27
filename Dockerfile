@@ -36,11 +36,7 @@ RUN mkdir /app/backend/staticfiles
 
 WORKDIR /app
 
-# SECRET_KEY is only included here to avoid raising an error when generating static files.
-# Be sure to add a real SECRET_KEY config variable in Heroku.
-RUN DJANGO_SETTINGS_MODULE=simple_project.settings.production \
-  SECRET_KEY=`h5*$vdw$yof$mvmm=#=v2k-79f66zp-rxyh^@p9%6md9j!ti+t` \
-  python3 backend/manage.py collectstatic --noinput
+RUN python3 backend/manage.py collectstatic --noinput
 
 EXPOSE $PORT
 
