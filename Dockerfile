@@ -37,6 +37,8 @@ RUN mkdir /app/backend/staticfiles
 
 WORKDIR /app/backend
 
+ENV DJANGO_SETTINGS_MODULE=simple_project.settings.production
+
 RUN python3 manage.py collectstatic --noinput
 
 EXPOSE $PORT
